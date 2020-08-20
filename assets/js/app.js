@@ -42,8 +42,8 @@ function loadHandler(event) {
 function processData(csv) {
   var allTextLines = csv.split(/\r\n|\n/);
   var lines = [];
-  //   for (var i = 0; i < allTextLines.length; i++) {
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < allTextLines.length; i++) {
+    //   for (var i = 0; i < 10; i++) {
     var data = allTextLines[i].split(";");
     var tarr = [];
     for (var j = 0; j < data.length; j++) {
@@ -51,8 +51,23 @@ function processData(csv) {
     }
     lines.push(tarr);
   }
-  console.log(lines);
+  //   console.log(lines);
+  getMPN(lines);
   createCSV(lines);
+}
+
+function getMPN(data) {
+  let mpnArray = [];
+  for (var i = 0; i < data.length; i++) {
+    // console.log(data[i]);
+    for (var j = 0; j < data[i].length; j++) {
+      dataArray = data[i][j].split(",");
+      mpn = dataArray[0];
+      //   console.log(mpn);
+      mpnArray.push(mpn);
+    }
+  }
+  console.log(mpnArray);
 }
 
 function createCSV(arrayOfArrays) {
